@@ -1,7 +1,338 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" style="--primary-color: #dcb5ff;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="X-Powered-By" content="None">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="https://ibb.co/Zzf2XBpP">
+    <title>splat</title>
+    <style>
+      :root {
+        --primary-color: var(--primary-color);
+        --glow-intensity: 0 0 15px;
+      }
+
+      body {
+        background-color: #000;
+        color: var(--primary-color);
+        font-family: 'Courier New', monospace;
+        margin: 0;
+        padding: 0;
+        line-height: 1.4;
+      }
+
+      .matrix-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.15;
+        pointer-events: none;
+      }
+
+      header,
+      main,
+      footer {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      h1,
+      h2 {
+        color: var(--primary-color);
+        text-shadow: 0 0 5px var(--primary-color);
+        border-bottom: 1px dashed var(--primary-color);
+        padding-bottom: 5px;
+      }
+
+      a {
+        color: #D0F0E8;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #E8FFF8;
+        text-decoration: underline;
+      }
+
+      .btn {
+        background: #111;
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+        padding: 8px 15px;
+        margin: 5px;
+        cursor: pointer;
+        font-family: 'Courier New', monospace;
+        transition: all 0.3s;
+        display: inline-block;
+        text-align: center;
+        box-sizing: border-box;
+        font-size: 1rem;
+        vertical-align: middle;
+      }
+
+      .btn:hover {
+        background: var(--primary-color);
+        color: #000;
+        text-decoration: none;
+        box-shadow: 0 0 10px var(--primary-color);
+      }
+
+      .dropdown {
+        display: inline-block;
+        position: relative;
+      }
+
+      .dropdown.open .dropdown-content {
+        display: block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background: #000;
+        border: 1px solid var(--primary-color);
+        z-index: 1;
+        max-height: 300px;
+        overflow-y: auto;
+        min-width: 100%;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .dropdown-content p {
+        padding: 8px 15px;
+        margin: 0;
+        border-bottom: 1px dotted #333;
+        font-size: 0.9rem;
+      }
+
+      .dropdown-content p:hover {
+        background: var(--primary-color);
+        color: #000;
+      }
+
+      .ascii-art {
+        text-align: center;
+        margin: 20px 0;
+        color: var(--primary-color);
+        font-family: monospace;
+        white-space: pre;
+        text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+        animation: glow-pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes glow-pulse {
+        0% {
+          text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+        }
+
+        50% {
+          text-shadow: 0 0 20px var(--primary-color), 0 0 30px var(--primary-color);
+        }
+
+        100% {
+          text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+        }
+      }
+
+      .terminal {
+        border: 1px solid var(--primary-color);
+        padding: 15px;
+        margin: 20px 0;
+        background: rgba(0, 20, 0, 0.3);
+      }
+
+      .terminal.no-border {
+        border: none;
+        background: none;
+        padding: 15px;
+      }
+
+      .blink {
+        animation: blink 1s step-end infinite;
+      }
+
+      @keyframes blink {
+
+        from,
+        to {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 0;
+        }
+      }
+
+      footer {
+        text-align: center;
+        font-size: 0.8em;
+        border-top: 1px dashed var(--primary-color);
+        margin-top: 30px;
+      }
+
+      .status-bar {
+        background: #000;
+        color: var(--primary-color);
+        padding: 5px;
+        border-top: 1px solid var(--primary-color);
+        font-size: 0.8em;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+
+      ::selection {
+        background: var(--primary-color);
+        color: #000;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(rgba(0, 255, 0, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 255, 0, 0.03) 1px, transparent 1px);
+        background-size: 3px 3px;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      @media (max-width: 768px) {
+        .btn {
+          width: 100%;
+          padding: 8px 15px !important;
+        }
+
+        .dropdown .btn {
+          display: block;
+        }
+
+        .dropdown-content {
+          min-width: 100%;
+        }
+      }
+    </style>
+  </head>
   <body>
-    <h1>Hello world</h1>
-    <p>If you see this, GitHub Pages is working.</p>
-  </body>
-</html>
+    <div class="matrix-bg" id="matrix"></div>
+    <header>
+      <div class="ascii-art">
+        <pre>
+          _____                    _____                    _____            _____                _____          
+         /\    \                  /\    \                  /\    \          /\    \              /\    \         
+        /::\    \                /::\    \                /::\____\        /::\    \            /::\    \        
+       /::::\    \              /::::\    \              /:::/    /       /::::\    \           \:::\    \       
+      /::::::\    \            /::::::\    \            /:::/    /       /::::::\    \           \:::\    \      
+     /:::/\:::\    \          /:::/\:::\    \          /:::/    /       /:::/\:::\    \           \:::\    \     
+    /:::/__\:::\    \        /:::/__\:::\    \        /:::/    /       /:::/__\:::\    \           \:::\    \    
+    \:::\   \:::\    \      /::::\   \:::\    \      /:::/    /       /::::\   \:::\    \          /::::\    \   
+  ___\:::\   \:::\    \    /::::::\   \:::\    \    /:::/    /       /::::::\   \:::\    \        /::::::\    \  
+ /\   \:::\   \:::\    \  /:::/\:::\   \:::\____\  /:::/    /       /:::/\:::\   \:::\    \      /:::/\:::\    \ 
+/::\   \:::\   \:::\____\/:::/  \:::\   \:::|    |/:::/____/       /:::/  \:::\   \:::\____\    /:::/  \:::\____\
+\:::\   \:::\   \::/    /\::/    \:::\  /:::|____|\:::\    \       \::/    \:::\  /:::/    /   /:::/    \::/    /
+ \:::\   \:::\   \/____/  \/_____/\:::\/:::/    /  \:::\    \       \/____/ \:::\/:::/    /   /:::/    / \/____/ 
+  \:::\   \:::\    \               \::::::/    /    \:::\    \               \::::::/    /   /:::/    /          
+   \:::\   \:::\____\               \::::/    /      \:::\    \               \::::/    /   /:::/    /           
+    \:::\  /:::/    /                \::/____/        \:::\    \              /:::/    /    \::/    /            
+     \:::\/:::/    /                  ~~               \:::\    \            /:::/    /      \/____/             
+      \::::::/    /                                     \:::\    \          /:::/    /                           
+       \::::/    /                                       \:::\____\        /:::/    /                            
+        \::/    /                                         \::/    /        \::/    /                             
+         \/____/                                           \/____/          \/____/                              
+                                                                                                                 
+
+
+
+
+             
+            </pre>
+      </div>
+      <h1 class="glow">splat<span class="blink">_</span>
+      </h1>
+      <p>&gt; sup bro :-)</p>
+    </header>
+    <main>
+      <br>
+      <section>
+        <h2> connections<span class="blink">_</h2>
+        <div style="text-align: center;">
+          <a href="https://t.me/user99426" target="_blank" class="btn">telegram</a>
+          <a href="https://discord.com/users/1449099964369076224" target="_blank" class="btn">discord</a>
+          <div class="dropdown">
+            <button class="btn">accepted payments ▼</button>
+            <div class="dropdown-content">
+			  <p>bank transfer</p>
+              <p>bitcoin [BTC]</p>
+			  <p>cash by mail</p>
+              <p>ethereum [ETH]</p>
+              <p>solana [SOL]</p>
+              <p>monero [XMR]</p>
+              <p>telegram stars [1:1]</p>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="btn">platforms ▼</button>
+            <div class="dropdown-content">
+                        <p>bandcamp</p>
+                        <p>discord</p>
+                        <p>element</p>
+                        <p>emails [og]</p>
+                        <p>epicgames</p>
+                        <p>github</p>
+						<p>grailed</p>
+                        <p>instagram</p>
+                        <p>keybase</p>
+                        <p>minecraft</p>
+                        <p>pinterest</p>
+                        <p>reddit</p>
+						<p>roblox</p>
+						<p>rockstar</p>
+						<p>session</p>
+						<p>signal</p>
+                        <p>snapchat</p>
+                        <p>soundcloud</p>
+						<p>spotify</p>
+						<p>steam</p>
+						<p>supercell</p>
+						<p>teams</p>
+                        <p>telegram</p>
+                        <p>tiktok</p>
+                        <p>ubisoft</p>
+						<p>vinted</p>
+						<p>whatsapp</p>
+              <br>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="terminal">
+        <h2> about_me<span class="blink">_</h2>
+        <p>&gt; well-behaved.</p>
+        <p>&gt; constantly learning...</p>
+        <br>
+      </section>
+      
+<audio id="clickSound">
+  <source src="KLICKAUD.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  document.addEventListener("click", () => {
+    const audio = document.getElementById("clickSound");
+    audio.play();
+  }, { once: true });
+</script>
+
+
+
+</body></html>
