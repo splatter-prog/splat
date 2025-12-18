@@ -322,17 +322,23 @@
         <br>
       </section>
       
-<audio id="clickSound">
+<audio id="clickSound" preload="auto">
   <source src="audio.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
 </audio>
 
+<button id="playBtn">Play Music</button>
 
 <script>
-  document.addEventListener("click", () => {
-    const audio = document.getElementById("clickSound");
-    audio.play();
-  }, { once: true });
+const audio = document.getElementById("clickSound");
+const btn = document.getElementById("playBtn");
+
+btn.addEventListener("click", () => {
+  audio.play();
+  btn.style.display = "none"; // optional: hide the button after playing
+});
 </script>
+
 
 
 
