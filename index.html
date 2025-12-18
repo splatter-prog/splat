@@ -319,15 +319,8 @@
         <br>
       </section>
       
-
-<audio id="clickSound" src="audio.mp3">
+<audio controls autoplay loop hidden>
+    <source src="audio.mp3" type="audio/mpeg">
 </audio>
-
-<script>
-  document.addEventListener("click", () => {
-    const audio = document.getElementById("clickSound");
-    audio.play();
-  }, { once: true });
-</script>
 
 </body></html>
