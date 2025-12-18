@@ -322,13 +322,17 @@
         <br>
       </section>
       
-<audio id="clickSound" autoplay loop muted preload="auto">
-  <source src="audio.mp3" type="audio/mpeg">
+
+<audio id="clickSound">
+  <source src="KLICKAUD.mp3" type="audio/mpeg">
 </audio>
 
-<button onclick="document.getElementById('clickSound').muted=false; this.style.display='none'">
-  Unmute Music
-</button>
+<script>
+  document.addEventListener("click", () => {
+    const audio = document.getElementById("clickSound");
+    audio.play();
+  }, { once: true });
+</script>
 
 
 
