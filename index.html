@@ -322,10 +322,15 @@
       </section>
       
 
-<div class="container mx-auto text-center mt-8">
-    <audio id="bg-audio" preload="auto" autoplay loop src="audio.mp3" type="audio/mpeg">
-  
-    </audio>
-</div>
+<audio id="clickSound">
+  <source src="KLICKAUD.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  document.addEventListener("click", () => {
+    const audio = document.getElementById("clickSound");
+    audio.play();
+  }, { once: true });
+</script>
 
 </body></html>
